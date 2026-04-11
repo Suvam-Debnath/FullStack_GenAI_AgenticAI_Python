@@ -1,0 +1,53 @@
+# 🔥 Virtual Environment
+
+venv/
+env/
+ENV/
+
+# 🔐 Environment variables (secrets)
+
+.env
+.env.*
+
+# 🧠 Python cache files
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# 📦 Distribution / packaging
+
+build/
+dist/
+*.egg-info/
+
+# 🧪 Test / coverage
+
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 📝 Logs
+
+*.log
+
+# 🖥️ IDE / Editor files
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 🗂️ OS generated files
+
+.DS_Store
+Thumbs.db
+
+# 📊 Jupyter Notebook checkpoints
+
+.ipynb_checkpoints/
+
+# 🔧 Misc
+
+*.sqlite3
