@@ -16,6 +16,7 @@ def read_root():
 def read_root():
     return {"email": "suvam@gmail.com"}
 
+# This endpoint will receive a message from the user and return a response from the model
 @app.post("/chat")
 def chat(
         message: str = Body(..., description="The message to send to the model")
