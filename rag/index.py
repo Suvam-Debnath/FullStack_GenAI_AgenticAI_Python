@@ -31,7 +31,7 @@ embedding_model = OpenAIEmbeddings(
 vector_store = QdrantVectorStore.from_documents(
     documents=chunks,
     embedding=embedding_model,
-    url="http://localhost:6333",
+    url="http://localhost:6333",  #Make sure Qdrant database is running at this URL
     collection_name="springboot_docs"
 )
 
