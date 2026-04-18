@@ -17,8 +17,8 @@ docs = loader.load()
 
 #Split the document into chunks
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000, 
-    chunk_overlap=400
+    chunk_size=1000,  #This means that each chunk will have a maximum of 1000 characters.
+    chunk_overlap=400 #This means that each chunk will have 400 characters of overlap with the previous chunk to maintain context
 )
 chunks = text_splitter.split_documents(documents=docs)
 
