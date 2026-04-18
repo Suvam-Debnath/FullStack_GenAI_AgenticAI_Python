@@ -7,10 +7,12 @@ from .queues.worker import process_query
 
 app = FastAPI()
 
+# Define API endpoints
 @app.get('/')
 def root():
     return {"status": 'Server is up and running'}
 
+# Endpoint to receive chat queries and enqueue them for processing
 @app.post('/chat')
 def chat(
         query: str = Query(..., description="The chat query of user")
@@ -19,6 +21,7 @@ def chat(
 
     return { "status": "queued", "job_id": job.id }
 
+# Endpoint to check the status of a job and retrieve the result
 @app.get('/job-status')
 def get_result(
         job_id: str = Query(..., description="Job ID")

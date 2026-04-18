@@ -1,5 +1,5 @@
 services:
   valkey:
-    image: valkey/valkey
+    image: valkey/valkey  # Use the official Valkey image from Docker Hub
     ports:
       - 6379:6379

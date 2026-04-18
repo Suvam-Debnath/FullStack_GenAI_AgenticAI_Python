@@ -12,16 +12,19 @@ embedding_model = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
 
+# Initialize the vector database (Qdrant) and connect to the existing collection
 vector_db = QdrantVectorStore.from_existing_collection(
     url="http://localhost:6333",  # vector db running on docker
     collection_name="learning_rag",
     embedding=embedding_model,
 )
 
+# Worker function to process the query and return the response
 async def process_query(query:str):
     print("Searching Chunks", query)
-    search_results = vector_db.similarity_search(query=query)
+    search_results = vector_db.similarity_search(query=query)  # search for similar chunks in the vector database based on the query
 
+    # Prepare the context for the OpenAI API by combining the retrieved chunks' content, page numbers, and file locations
     context = "\n\n\n".join([f"Page Content: {result.page_content}\nPage Number: {result.metadata['page_label']}\nFile Location: {result.metadata['source']}" for result in search_results])
 
     SYSTEM_PROMPT = f"""
@@ -33,6 +36,7 @@ async def process_query(query:str):
     {context}
     """
 
+    # Call the OpenAI API to get the response based on the query and the retrieved context
     response = openai_client.chat.completions.create(
         model="gpt-5",
         messages=[
